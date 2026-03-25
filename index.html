@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Munna R S — Psychology Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --surface: #f2f0eb;
+      --border: #dedad2;
+      --text: #1a1916;
+      --muted: #6b6860;
+      --accent: #3d6b4f;
+      --accent-light: #e8f0eb;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5rem;
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+    .hero-left {
+      padding: 6rem 4rem 4rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+    .tagline {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tagline::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--accent);
+      display: block; flex-shrink: 0;
+    }
+    .name-main {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .name-full {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .name-scripts {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      opacity: 0.65;
+    }
+    .pronouns {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 0.2rem 0.8rem;
+      margin-top: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 2;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .social-link {
+      display: inline-block;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.73rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      background: white;
+    }
+    .social-link:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-light); }
+
+    .hero-right { display: flex; flex-direction: column; }
+    .photo-area {
+      flex: 1;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 340px;
+      overflow: hidden;
+    }
+    .photo-area img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .photo-placeholder { text-align: center; color: var(--muted); }
+    .photo-placeholder .initials {
+      font-family: var(--serif);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      display: block;
+    }
+    .photo-placeholder small {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .location-badge {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .loc-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(0.7)}
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 5rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.93rem;
+      line-height: 2;
+    }
+    .about-text a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .sidebar-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar-label {
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .dot-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .dot-list li {
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .dot-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+    .dot-list a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* EXPERIENCE */
+    .roles-list { display: flex; flex-direction: column; }
+    .role-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .role-item:first-child { border-top: 1px solid var(--border); }
+    .role-date { font-size: 0.78rem; color: var(--muted); padding-top: 0.15rem; }
+    .role-content h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .role-org { font-size: 0.78rem; color: var(--accent); margin-bottom: 0.4rem; }
+    .role-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.9; }
+    .role-desc a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* RESOURCES */
+    .resources-intro {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 2;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+    .resources-intro a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .resource-links { display: flex; flex-direction: column; gap: 0.5rem; }
+    .resource-btn {
+      display: block;
+      padding: 0.9rem 1.5rem;
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+      font-size: 0.83rem;
+      line-height: 1.4;
+      transition: background 0.2s;
+    }
+    .resource-btn:hover { background: var(--accent); }
+    .resource-btn span {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-text p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+    .contact-text a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .contact-links-col { display: flex; flex-direction: column; gap: 0.5rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.83rem;
+      transition: all 0.2s;
+      background: white;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .contact-link .arrow { opacity: 0.35; font-size: 0.75rem; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 820px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-right { display: none; }
+      .section { padding: 3rem 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .role-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Munna <span>R S</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <p class="tagline">Psychology Researcher · Bengaluru, India</p>
+      <h1 class="name-main">Munna R S</h1>
+      <p class="name-full">Munna R. Shainy</p>
+      <p class="name-scripts">മുന്നാ ആർ എസ്സ് &nbsp;·&nbsp; मुन्ना आर एस</p>
+      <span class="pronouns">he / him / his</span>
+      <p class="hero-desc">
+        BSc Psychology Honours (CHRIST University, Bengaluru). Researcher in
+        neurotech, developmental psychology, and open science. Advocate for
+        diversity, mental health, and queer rights.
+      </p>
+      <div class="socials">
+        <a href="https://scholar.google.com/citations?user=PavV-l4AAAAJ&hl=en" target="_blank" class="social-link">Scholar</a>
+        <a href="https://www.linkedin.com/in/munnars/" target="_blank" class="social-link">LinkedIn</a>
+        <a href="https://twitter.com/MunnaRShainy" target="_blank" class="social-link">X / Twitter</a>
+        <a href="https://mastodon.lol/@munnarshainy" target="_blank" class="social-link">Mastodon</a>
+        <a href="https://app.bsky.cz/profile/munnarshainy.bsky.social" target="_blank" class="social-link">Bluesky</a>
+        <a href="https://github.com/munnarshainy" target="_blank" class="social-link">GitHub</a>
+        <a href="https://orcid.org/0000-0002-9314-3128" target="_blank" class="social-link">ORCiD</a>
+        <a href="https://linktr.ee/munnarshainy" target="_blank" class="social-link">LinkTree</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="photo-area">
+        <!-- To add your photo: replace this div with <img src="your-photo.jpg" alt="Munna R S"> -->
+        <div class="photo-placeholder">
+          <span class="initials">MRS</span>
+          <small>Replace with your photo</small>
+        </div>
+      </div>
+      <div class="location-badge">
+        <span class="loc-dot"></span>
+        Bengaluru, Karnataka, India
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <p class="section-label">About</p>
+    <h2>Researcher, advocate,<br /><em style="font-style:italic">curious mind.</em></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a graduate of BSc Psychology Honours from CHRIST (Deemed to be University), Bannerghatta Road Campus, Bengaluru. I recently adjourned my role as a Research Assistant at a US-Bengaluru-based BCI startup currently in stealth mode.</p>
+        <p>I was a Research Assistant for the <a href="https://manybabies.github.io/MB4/" target="_blank">MB4: Social Evaluation project</a> of the <a href="https://manybabies.github.io/projects" target="_blank">ManyBabies4 network</a>, led by <a href="https://isearch.asu.edu/profile/3521043" target="_blank">Dr. Kelsey Lucca</a>, <a href="https://twitter.com/francislyuen" target="_blank">Francis Yuen</a>, and <a href="https://psych.ubc.ca/profile/kiley-hamlin/" target="_blank">Dr. J. Kiley Hamlin</a>, under <a href="https://yiyiwang.webador.com" target="_blank">Dr. Yiyi Wang</a> (Post-doctoral Fellow, University of Chicago). I was also a remote Research Assistant at <a href="https://spl.stanford.edu/" target="_blank">Stanford's Psychophysiology Lab</a> under <a href="https://www.kpetrova.com/" target="_blank">Kate Petrova</a>, PhD Candidate.</p>
+        <p>Until 2024, I was at Axxonet Brain Research Laboratory, Bengaluru, as a full-time Research Intern — learning EEG and conducting research on neural markers of embodied emotion recognition, mood and emotion experiences, and remedial therapies including neurofeedback and brain function therapy (BFT).</p>
+        <p>I am eager to contribute to thoughtful, science-driven products — especially in neurotech, healthtech, mental health, and early-stage research-heavy startups that value rigour, curiosity, and humane ambition.</p>
+        <p>Outside research, I advocate for diversity and inclusion, mental health awareness, and queer rights. I enjoy drawing portraits and recently began reading more books.</p>
+      </div>
+      <div>
+        <div class="sidebar-box">
+          <p class="sidebar-label">Research interests</p>
+          <ul class="dot-list">
+            <li>Neurotech & BCI</li>
+            <li>Developmental psychology</li>
+            <li>Psychophysiology & EEG</li>
+            <li>Emotion & affect science</li>
+            <li>Open science practices</li>
+            <li>Diversity in academia</li>
+            <li>R / Python for psychology</li>
+          </ul>
+        </div>
+        <div class="sidebar-box">
+          <p class="sidebar-label">Current mentorship programs</p>
+          <ul class="dot-list">
+            <li><a href="https://psychology.fas.harvard.edu/pprep" target="_blank">Harvard PPREP</a></li>
+            <li><a href="http://nextgenpsychscholars.com/" target="_blank">NextGen Psych Scholars</a></li>
+            <li><a href="https://www.project-short.com/" target="_blank">Project SHORT</a></li>
+            <li><a href="https://cogdevsoc.org/cds-mentorship-program/" target="_blank">CDS Mentorship Program</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <p class="section-label">Experience</p>
+    <h2>Roles &amp; projects</h2>
+    <div class="roles-list">
+      <div class="role-item">
+        <div class="role-date">2024 – Present</div>
+        <div class="role-content">
+          <h3>Research Assistant</h3>
+          <p class="role-org">US-Bengaluru BCI Startup (Stealth Mode)</p>
+          <p class="role-desc">Contributing to brain-computer interface research at a confidential startup operating across the US and Bengaluru.</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-date">Active</div>
+        <div class="role-content">
+          <h3>Research Assistant — MB4: Social Evaluation</h3>
+          <p class="role-org">ManyBabies4 Network</p>
+          <p class="role-desc">Contributed to the <a href="https://manybabies.github.io/MB4/" target="_blank">MB4 Social Evaluation project</a> under Dr. Kelsey Lucca, Francis Yuen, Dr. J. Kiley Hamlin, and Dr. Yiyi Wang (University of Chicago).</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-date">Active</div>
+        <div class="role-content">
+          <h3>Remote Research Assistant</h3>
+          <p class="role-org">Stanford Psychophysiology Lab (Dr. James J. Gross)</p>
+          <p class="role-desc">Worked under the mentorship of <a href="https://www.kpetrova.com/" target="_blank">Kate Petrova</a>, PhD Candidate, at <a href="https://spl.stanford.edu/" target="_blank">Stanford's SPL</a>.</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-date">Until 2024</div>
+        <div class="role-content">
+          <h3>Research Intern (Full-time)</h3>
+          <p class="role-org">Axxonet Brain Research Laboratory, Bengaluru</p>
+          <p class="role-desc">Learned EEG methodology and conducted research on neural markers of embodied emotion recognition and mood/emotion experiences. Also practised remedial therapies including neurofeedback and brain function therapy (BFT).</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-date">Ongoing</div>
+        <div class="role-content">
+          <h3>Core Team Member & Social Media Head</h3>
+          <p class="role-org">Psych #rstats Club</p>
+          <p class="role-desc">Part of <a href="https://sites.google.com/view/psych-rstats-club/about" target="_blank">Psych #rstats Club</a>, founded by Pooja Kulkarni — bringing diverse researchers together to learn statistics in psychology through R, empirical discussions, and group learning sessions.</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-date">Co-founder</div>
+        <div class="role-content">
+          <h3>#dev-ersity in academia (#DIA)</h3>
+          <p class="role-org">Co-founded with Nikita Ghodke</p>
+          <p class="role-desc">A community space to spread awareness about developmental psychology, its interdisciplinary nature, open-science practices, and uplift underrepresented researchers. <a href="https://dev-ersityinacademia.my.canva.site/" target="_blank">Official #DIA website →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="section" id="resources">
+    <p class="section-label">Resources</p>
+    <h2>Things I've gathered<br /><em style="font-style:italic">and share openly.</em></h2>
+    <p class="resources-intro">
+      Resources I found helpful while navigating remote RA positions and building research skills as an early-career researcher.
+      A massive shoutout to all original authors for sharing publicly. I'm also building a database of programming resources
+      for psychology students — especially international researchers — across R, Python, and MATLAB.
+      <a href="https://forms.gle/PfL44ANLyscR4674A" target="_blank">Suggest a resource here.</a> All contributors will be credited.
+    </p>
+    <div class="resource-links">
+      <a href="https://www.nikitaghodke.com/resources" target="_blank" class="resource-btn">
+        Resources by Nikita Ghodke
+        <span>MS SLP Student · New York University</span>
+      </a>
+      <a href="https://linktr.ee/anshitasingh" target="_blank" class="resource-btn">
+        Resources by Anshita Singh
+        <span>Cognitive Psychology PhD Student · University of Virginia</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1VIAu4bOT5WZqdNEQW7_rTktmpml4WzzWj-97yhYf8V0/edit?usp=sharing" target="_blank" class="resource-btn">
+        Programming Languages for Psychological Research
+        <span>By Munna R. Shainy — R, Python, MATLAB</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1SG3jEUg3w3LtORRBDE-vBdpQ1L6P0lfaP95AHllOK8o/edit?usp=sharing" target="_blank" class="resource-btn">
+        Learning OpenSesame for Psychological Research
+        <span>By Munna R. Shainy</span>
+      </a>
+      <a href="https://medium.com/@munnars/how-i-reached-where-i-am-right-now-3c1ba802312b" target="_blank" class="resource-btn">
+        My RA Opportunity Hunt & Application Story (2021)
+        <span>Written on Medium</span>
+      </a>
+      <a href="https://dev-ersityinacademia.my.canva.site/" target="_blank" class="resource-btn">
+        #dev-ersity in academia (#DIA)
+        <span>Official website — developmental psychology & open science community</span>
+      </a>
+      <a href="https://sites.google.com/view/psych-rstats-club/about" target="_blank" class="resource-btn">
+        Psych #rstats Club
+        <span>Official website — learning R for psychology research</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Let's connect</h2>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>I extend my support to all international students and post-bacs looking for RA positions. I'm open to one-to-one conversations about my process and sharing honest insights — not a formal mentorship program, just a genuine chat.</p>
+        <p>Feel free to reach out via LinkedIn or Twitter, or keep an eye on my <a href="https://linktr.ee/munnarshainy" target="_blank">LinkTree</a> for what's new.</p>
+      </div>
+      <div class="contact-links-col">
+        <a href="https://www.linkedin.com/in/munnars/" target="_blank" class="contact-link">LinkedIn <span class="arrow">↗</span></a>
+        <a href="https://twitter.com/MunnaRShainy" target="_blank" class="contact-link">X / Twitter <span class="arrow">↗</span></a>
+        <a href="https://mastodon.lol/@munnarshainy" target="_blank" class="contact-link">Mastodon <span class="arrow">↗</span></a>
+        <a href="https://app.bsky.cz/profile/munnarshainy.bsky.social" target="_blank" class="contact-link">Bluesky <span class="arrow">↗</span></a>
+        <a href="https://scholar.google.com/citations?user=PavV-l4AAAAJ&hl=en" target="_blank" class="contact-link">Google Scholar <span class="arrow">↗</span></a>
+        <a href="https://orcid.org/0000-0002-9314-3128" target="_blank" class="contact-link">ORCiD 0000-0002-9314-3128 <span class="arrow">↗</span></a>
+        <a href="https://linktr.ee/munnarshainy" target="_blank" class="contact-link">LinkTree — What's New <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Munna R S</span>
+    <span>Keep an eye on <a href="https://linktr.ee/munnarshainy" target="_blank">LinkTree</a> for updates</span>
+    <span>Built with GitHub Pages</span>
+  </footer>
+
+</body>
+</html>
