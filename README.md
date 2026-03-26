@@ -1,6 +1,6 @@
 # munnarshainy.github.io
 
-Personal portfolio site for **Munna R S** — psychology researcher with hands-on experience in EEG, BCI, and psychophysiology, looking for research or ops roles in neurotech, healthtech, or mental health startups.
+Personal portfolio site f
 
 🌐 **Live site:** [munnarshainy.github.io](https://munnarshainy.github.io)
 
@@ -8,7 +8,7 @@ Personal portfolio site for **Munna R S** — psychology researcher with hands-o
 
 ## About the site
 
-A single-page static site built with plain HTML and CSS — no frameworks, no dependencies. Hosted for free on GitHub Pages.
+A single-page static site built with plain HTML and CSS. Hosted for free on GitHub Pages.
 
 ## Get in touch
 
